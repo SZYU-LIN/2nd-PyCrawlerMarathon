@@ -1,0 +1,207 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#比較一下範例檔案中的「File I/O」與「xmltodict」讀出來的內容有什麼差異\n",
+    "#ANS:前者是將所有內容顯示出來，後者只將需顯示的內容印出來"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import urllib.request\n",
+    "import zipfile\n",
+    "\n",
+    "res = \"http://opendata.cwb.gov.tw/govdownload?dataid=F-D0047-093&authorizationkey=rdec-key-123-45678-011121314\"\n",
+    "urllib.request.urlretrieve(res, \"./data/example.zip\")\n",
+    "f = zipfile.ZipFile('./data/example.zip')\n",
+    "f.extractall('./data')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Collecting xmltodict\n",
+      "  Downloading https://files.pythonhosted.org/packages/28/fd/30d5c1d3ac29ce229f6bdc40bbc20b28f716e8b363140c26eff19122d8a5/xmltodict-0.12.0-py2.py3-none-any.whl\n",
+      "Installing collected packages: xmltodict\n",
+      "Successfully installed xmltodict-0.12.0\n"
+     ]
+    }
+   ],
+   "source": [
+    "!pip install xmltodict\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "   import os, sys\n",
+    "dirs = os.listdir( './data' )"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "高雄有 38 個地區有溫度資料\n"
+     ]
+    }
+   ],
+   "source": [
+    "import xmltodict\n",
+    "d = dict(xmltodict.parse(xml))   \n",
+    "\n",
+    "locations=d['cwbopendata']['dataset']['locations']['location']\n",
+    "print('高雄有',len(locations),'個地區有溫度資料')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "鹽埕區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "鼓山區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "左營區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "楠梓區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "三民區 < 攝氏度： 24 > 2020-03-01T18:00:00+08:00\n",
+      "新興區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "前金區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "苓雅區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "前鎮區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "旗津區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "小港區 < 攝氏度： 26 > 2020-03-01T18:00:00+08:00\n",
+      "鳳山區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "林園區 < 攝氏度： 26 > 2020-03-01T18:00:00+08:00\n",
+      "大寮區 < 攝氏度： 26 > 2020-03-01T18:00:00+08:00\n",
+      "大樹區 < 攝氏度： 26 > 2020-03-01T18:00:00+08:00\n",
+      "大社區 < 攝氏度： 26 > 2020-03-01T18:00:00+08:00\n",
+      "仁武區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "鳥松區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "岡山區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "橋頭區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "燕巢區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "田寮區 < 攝氏度： 24 > 2020-03-01T18:00:00+08:00\n",
+      "阿蓮區 < 攝氏度： 24 > 2020-03-01T18:00:00+08:00\n",
+      "路竹區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "湖內區 < 攝氏度： 24 > 2020-03-01T18:00:00+08:00\n",
+      "茄萣區 < 攝氏度： 23 > 2020-03-01T18:00:00+08:00\n",
+      "永安區 < 攝氏度： 23 > 2020-03-01T18:00:00+08:00\n",
+      "彌陀區 < 攝氏度： 24 > 2020-03-01T18:00:00+08:00\n",
+      "梓官區 < 攝氏度： 24 > 2020-03-01T18:00:00+08:00\n",
+      "旗山區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "美濃區 < 攝氏度： 26 > 2020-03-01T18:00:00+08:00\n",
+      "六龜區 < 攝氏度： 24 > 2020-03-01T18:00:00+08:00\n",
+      "甲仙區 < 攝氏度： 24 > 2020-03-01T18:00:00+08:00\n",
+      "杉林區 < 攝氏度： 25 > 2020-03-01T18:00:00+08:00\n",
+      "內門區 < 攝氏度： 24 > 2020-03-01T18:00:00+08:00\n",
+      "茂林區 < 攝氏度： 24 > 2020-03-01T18:00:00+08:00\n",
+      "桃源區 < 攝氏度： 22 > 2020-03-01T18:00:00+08:00\n",
+      "那瑪夏區 < 攝氏度： 20 > 2020-03-01T18:00:00+08:00\n"
+     ]
+    }
+   ],
+   "source": [
+    "for location in locations:\n",
+    "    print(location['locationName'],\"< \",end='')\n",
+    "    print(\"攝氏度：\", location['weatherElement'][0]['time'][0]['elementValue']['value'],\"> \",end='')\n",
+    "    print(location['weatherElement'][0]['time'][0]['dataTime'])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "時間點2020-03-01T18:00:00+08:00，溫度為25攝氏度\n",
+      "時間點2020-03-01T21:00:00+08:00，溫度為24攝氏度\n",
+      "時間點2020-03-02T00:00:00+08:00，溫度為22攝氏度\n",
+      "時間點2020-03-02T03:00:00+08:00，溫度為21攝氏度\n",
+      "時間點2020-03-02T06:00:00+08:00，溫度為20攝氏度\n",
+      "時間點2020-03-02T09:00:00+08:00，溫度為22攝氏度\n",
+      "時間點2020-03-02T12:00:00+08:00，溫度為26攝氏度\n",
+      "時間點2020-03-02T15:00:00+08:00，溫度為26攝氏度\n",
+      "時間點2020-03-02T18:00:00+08:00，溫度為24攝氏度\n",
+      "時間點2020-03-02T21:00:00+08:00，溫度為22攝氏度\n",
+      "時間點2020-03-03T00:00:00+08:00，溫度為21攝氏度\n",
+      "時間點2020-03-03T03:00:00+08:00，溫度為20攝氏度\n",
+      "時間點2020-03-03T06:00:00+08:00，溫度為20攝氏度\n",
+      "時間點2020-03-03T09:00:00+08:00，溫度為22攝氏度\n",
+      "時間點2020-03-03T12:00:00+08:00，溫度為25攝氏度\n",
+      "時間點2020-03-03T15:00:00+08:00，溫度為26攝氏度\n",
+      "時間點2020-03-03T18:00:00+08:00，溫度為24攝氏度\n",
+      "時間點2020-03-03T21:00:00+08:00，溫度為23攝氏度\n",
+      "時間點2020-03-04T00:00:00+08:00，溫度為22攝氏度\n",
+      "時間點2020-03-04T03:00:00+08:00，溫度為21攝氏度\n",
+      "時間點2020-03-04T06:00:00+08:00，溫度為20攝氏度\n",
+      "時間點2020-03-04T09:00:00+08:00，溫度為22攝氏度\n",
+      "時間點2020-03-04T12:00:00+08:00，溫度為26攝氏度\n",
+      "時間點2020-03-04T15:00:00+08:00，溫度為26攝氏度\n"
+     ]
+    }
+   ],
+   "source": [
+    "for data in locations[0]['weatherElement'][0]['time']:\n",
+    "    print(f\"時間點{data['dataTime']}，溫度為{data['elementValue']['value']}{data['elementValue']['measures']}\")\n",
+    "          "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.4"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
